@@ -150,7 +150,8 @@ int main()
 		}
 		//в ракетку попал только левый нижний угол
 		//в ракетку попал только левый верхний угол
-		if (pointInRect(leftBat, leftTop) || pointInRect(leftBat, leftBottom)) 
+		if ((pointInRect(leftBat, leftTop) || pointInRect(leftBat, leftBottom)) && 
+			!pointInRect(leftBat, midLeft))
 		{
 			ballSpeedY = -ballSpeedY;
 		}
@@ -175,7 +176,8 @@ int main()
 		}
 		//в ракетку попал только правый нижний угол
 		//в ракетку попал только правый верхний угол
-		if (pointInRect(rightBat, rightTop) || pointInRect(rightBat, rightBottom))
+		if ((pointInRect(rightBat, rightTop) || pointInRect(rightBat, rightBottom)) &&
+			!pointInRect(rightBat, midRight))
 		{
 			ballSpeedY = -ballSpeedY;
 		}
