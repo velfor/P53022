@@ -11,43 +11,23 @@ int main()
 
 	//Создание объектов
 	RectangleShape leftBat, rightBat;
-	/*leftBat.setSize(BAT_SIZE);
-	leftBat.setFillColor(LEFT_BAT_COLOR);
-	leftBat.setPosition(BAT_OFFSET, (WINDOW_HEIGHT - BAT_SIZE.y) / 2);*/
 	batInit(leftBat, LEFT_BAT_COLOR, LEFT_BAT_START_POS);
+	batInit(rightBat, RIGHT_BAT_COLOR, RIGHT_BAT_START_POS);
 
-	rightBat.setSize(BAT_SIZE);
-	rightBat.setFillColor(RIGHT_BAT_COLOR);
-	rightBat.setPosition(WINDOW_WIDTH - BAT_OFFSET - BAT_SIZE.x, (WINDOW_HEIGHT - BAT_SIZE.y) / 2);
-
-	CircleShape ball(BALL_RADIUS);
-	ball.setFillColor(BALL_COLOR); - 2 * BALL_RADIUS) / 2, 
-		(WINDOW_HEIGHT - 2 * BALL_RADIUS) / 2);
-
+	CircleShape ball;
+	ballInit(ball);
 	float ballSpeedX = 2.f;
 	float ballSpeedY = 3.f;
 
-	//СЧЕТ
-	//шрифт
 	Font font;
 	font.loadFromFile("DS-DIGIB.ttf");
-	//переменные для счета
 	int leftScore = 0;
 	int rightScore = 0;
-	//Тексты для отображения на экране
-	//текст для левого счета
 	Text leftText;
-	leftText.setString(std::to_string(leftScore));
-	leftText.setFont(font);
-	leftText.setCharacterSize(FONT_SIZE);
-	leftText.setPosition(LEFT_TEXT_POS);
-
-	//текст для правого счета
+	textInit(leftText, font, leftScore, LEFT_TEXT_POS);
 	Text rightText;
-	leftText.setString(std::to_string(leftScore));
-	leftText.setFont(font);
-	leftText.setCharacterSize(FONT_SIZE);
-	leftText.setPosition(LEFT_TEXT_POS);
+	textInit(rightText, font, rightScore, RIGHT_TEXT_POS);
+
 	while (window.isOpen())
 	{
 		//1 обработка событий
