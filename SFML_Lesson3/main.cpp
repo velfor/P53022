@@ -1,6 +1,7 @@
 ﻿#include <SFML/Graphics.hpp>
 #include "settings.h"
 #include "functions.h"
+#include "ball.h"
 
 using namespace sf;
 
@@ -14,10 +15,12 @@ int main()
 	batInit(leftBat, LEFT_BAT_COLOR, LEFT_BAT_START_POS);
 	batInit(rightBat, RIGHT_BAT_COLOR, RIGHT_BAT_START_POS);
 
-	CircleShape ball;
+	/*CircleShape ball;
 	ballInit(ball);
-	float ballSpeedX = 2.f;
-	float ballSpeedY = 3.f;
+	float ball.speedX = 2.f;
+	float ball.speedY = 3.f;*/
+	Ball ball;
+	ballInit(ball);
 
 	Font font;
 	font.loadFromFile("DS-DIGIB.ttf");
@@ -39,26 +42,26 @@ int main()
 		}
 		// Обновление игровых объектов
 		//MЯЧ
-		ball.move(ballSpeedX, ballSpeedY);
+		ball.shape.move(ball.speedX, ball.speedY);
 		//мяч отскакивает от левой границы экрана
-		if (ball.getPosition().x <= 0) 
+		if (ball.shape.getPosition().x <= 0) 
 		{
-			ballSpeedX = -ballSpeedX;
+			ball.speedX = -ball.speedX;
 			rightScore++;
+			rightText.setString(std::to_string(rightScore));
 		}
 		//мяч отскакивает от правой границы экрана
-		if	(ball.getPosition().x + 2 * BALL_RADIUS >= WINDOW_WIDTH)
+		if	(ball.shape.getPosition().x + 2 * BALL_RADIUS >= WINDOW_WIDTH)
 		{
-			ballSpeedX = -ballSpeedX;
+			ball.speedX = -ball.speedX;
 			leftScore++;
 			leftText.setString(std::to_string(leftScore));
 		}
-		if (ball.getPosition().y <= 0 ||
-			ball.getPosition().y + 2 * BALL_RADIUS >= WINDOW_HEIGHT)
+
+		if (ball.shape.getPosition().y <= 0 ||
+			ball.shape.getPosition().y + 2 * BALL_RADIUS >= WINDOW_HEIGHT)
 		{
-			ballSpeedY = -ballSpeedY;
-			rightScore++;
-			rightText.setString(std::to_string(rightScore));
+			ball.speedY = -ball.speedY;
 		}
 		//ЛЕВАЯ РАКЕТКА
 		if (Keyboard::isKeyPressed(Keyboard::W)) {
@@ -92,76 +95,84 @@ int main()
 				WINDOW_HEIGHT - BAT_SIZE.y);
 		}
 		//ОТСКОК МЯЧА ОТ РАКЕТОК
-		Vector2f leftTop{ ball.getPosition().x, ball.getPosition().y };
-		Vector2f midLeft{ ball.getPosition().x, ball.getPosition().y + BALL_RADIUS };
-		Vector2f leftBottom{ ball.getPosition().x, ball.getPosition().y +
+		Vector2f leftTop{ ball.shape.getPosition().x, ball.shape.getPosition().y };
+		Vector2f midLeft{ ball.shape.getPosition().x, ball.shape.getPosition().y + BALL_RADIUS };
+		Vector2f leftBottom{ ball.shape.getPosition().x, ball.shape.getPosition().y +
 			2 * BALL_RADIUS };
-		Vector2f midTop{ ball.getPosition().x + BALL_RADIUS,  ball.getPosition().y };
-		Vector2f midBottom{ ball.getPosition().x + BALL_RADIUS,  ball.getPosition().y +
+		Vector2f midTop{ ball.shape.getPosition().x + BALL_RADIUS,  ball.shape.getPosition().y };
+		Vector2f midBottom{ ball.shape.getPosition().x + BALL_RADIUS,  ball.shape.getPosition().y +
 			2 * BALL_RADIUS };
-		Vector2f rightTop{ ball.getPosition().x + 2 * BALL_RADIUS, 
-			ball.getPosition().y };
-		Vector2f midRight{ ball.getPosition().x + 2 * BALL_RADIUS, 
-			ball.getPosition().y + BALL_RADIUS };
-		Vector2f rightBottom{ ball.getPosition().x + 2 * BALL_RADIUS, 
-			ball.getPosition().y + 2 * BALL_RADIUS };
+		Vector2f rightTop{ ball.shape.getPosition().x + 2 * BALL_RADIUS, 
+			ball.shape.getPosition().y };
+		Vector2f midRight{ ball.shape.getPosition().x + 2 * BALL_RADIUS, 
+			ball.shape.getPosition().y + BALL_RADIUS };
+		Vector2f rightBottom{ ball.shape.getPosition().x + 2 * BALL_RADIUS, 
+			ball.shape.getPosition().y + 2 * BALL_RADIUS };
 		//ЛЕВАЯ РАКЕТКА
 		//от правого края левой ракетки
 		if (pointInRect(leftBat, midLeft) && pointInRect(leftBat, leftTop) ||
 			pointInRect(leftBat, midLeft) && pointInRect(leftBat, leftBottom))
 		{
-			ballSpeedX = -ballSpeedX;
+			ball.speedX = -ball.speedX;
+			if (ball.speedX > 0) ball.speedX++;
+			else ball.speedX--;
+			if (ball.speedY > 0) ball.speedY++;
+			else ball.speedY--;
 		}
 		//от верхнего края левой ракетки
 		if (pointInRect(leftBat, midBottom) && pointInRect(leftBat, leftBottom) ||
 			pointInRect(leftBat, midBottom) && pointInRect(leftBat, rightBottom))
 		{
-			ballSpeedY = -ballSpeedY;
+			ball.speedY = -ball.speedY;
 		}
 		//от нижнего края левого ракетки
 		if (pointInRect(leftBat, midTop) && pointInRect(leftBat, leftTop) ||
 			pointInRect(leftBat, midTop) && pointInRect(leftBat, rightTop))
 		{
-			ballSpeedY = -ballSpeedY;
+			ball.speedY = -ball.speedY;
 		}
 		//в ракетку попал только левый нижний угол
 		//в ракетку попал только левый верхний угол
 		if ((pointInRect(leftBat, leftTop) || pointInRect(leftBat, leftBottom)) && 
 			!pointInRect(leftBat, midLeft))
 		{
-			ballSpeedY = -ballSpeedY;
+			ball.speedY = -ball.speedY;
 		}
 		//ПРАВАЯ РАКЕТКА
 		//от левого края ПРАВОЙ ракетки
 		if (pointInRect(rightBat, midRight) && pointInRect(rightBat, rightTop) ||
 			pointInRect(rightBat, midRight) && pointInRect(rightBat, rightBottom))
 		{
-			ballSpeedX = -ballSpeedX;
+			ball.speedX = -ball.speedX;
+			if (ball.speedX > 0) ball.speedX++;
+			else ball.speedX--;
+			if (ball.speedY > 0) ball.speedY++;
+			else ball.speedY--;
 		}
 		//от верхнего края правой ракетки
 		if (pointInRect(rightBat, midBottom) && pointInRect(rightBat, leftBottom) ||
 			pointInRect(rightBat, midBottom) && pointInRect(rightBat, rightBottom))
 		{
-			ballSpeedY = -ballSpeedY;
+			ball.speedY = -ball.speedY;
 		}
 		//от нижнего края правой ракетки
 		if (pointInRect(rightBat, midTop) && pointInRect(rightBat, leftTop) ||
 			pointInRect(rightBat, midTop) && pointInRect(rightBat, rightTop))
 		{
-			ballSpeedY = -ballSpeedY;
+			ball.speedY = -ball.speedY;
 		}
 		//в ракетку попал только правый нижний угол
 		//в ракетку попал только правый верхний угол
 		if ((pointInRect(rightBat, rightTop) || pointInRect(rightBat, rightBottom)) &&
 			!pointInRect(rightBat, midRight))
 		{
-			ballSpeedY = -ballSpeedY;
+			ball.speedY = -ball.speedY;
 		}
 		//3 отрисовка объектов и обновление окна
 		window.clear();
 		window.draw(leftBat);
 		window.draw(rightBat);
-		window.draw(ball);
+		window.draw(ball.shape);
 		window.draw(leftText);
 		window.draw(rightText);
 		window.display();

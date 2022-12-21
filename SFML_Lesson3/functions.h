@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "settings.h"
+#include "ball.h"
 
 void batInit(sf::RectangleShape& bat, const sf::Color batColor, const sf::Vector2f batStartPosition) {
 	bat.setSize(BAT_SIZE);
@@ -15,10 +16,12 @@ bool pointInRect(sf::RectangleShape bat, sf::Vector2f point) {
 		point.y <= bat.getPosition().y + BAT_SIZE.y;
 }
 
-void ballInit(sf::CircleShape& ball){
-	ball.setRadius(BALL_RADIUS);
-	ball.setFillColor(BALL_COLOR);
-	ball.setPosition(BALL_START_POS);
+void ballInit(Ball& ball){
+	ball.shape.setRadius(BALL_RADIUS);
+	ball.shape.setFillColor(BALL_COLOR);
+	ball.shape.setPosition(BALL_START_POS);
+	ball.speedX = 2.f;
+	ball.speedY = 3.f;
 }
 
 void textInit(sf::Text& text, sf::Font& font, int score, sf::Vector2f textPos) {
