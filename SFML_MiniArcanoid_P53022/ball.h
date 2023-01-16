@@ -6,6 +6,7 @@ struct Ball {
 	sf::CircleShape shape;
 	float speedX;
 	float speedY;
+	int score;
 };
 void ballInit(Ball& ball) {
 	ball.shape.setRadius(BALL_RADIUS);
@@ -13,6 +14,7 @@ void ballInit(Ball& ball) {
 	ball.shape.setPosition(BALL_START_POS);
 	ball.speedX = 2.f;
 	ball.speedY = 3.f;
+	ball.score = 0;
 }
 void ballUpdate(Ball& ball) {
 	ball.shape.move(ball.speedX, ball.speedY);

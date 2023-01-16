@@ -2,6 +2,7 @@
 #include "settings.h"
 #include "ball.h"
 #include "bat.h"
+#include "textobj.h"
 
 using namespace sf;
 int main()
@@ -15,9 +16,10 @@ int main()
 
 	Ball ball;
 	ballInit(ball);
-
 	Bat bat;
 	batInit(bat);
+	TextObj scoreText;
+	textInit(scoreText, ball.score);
 	
 
 	while (window.isOpen())
@@ -32,10 +34,12 @@ int main()
 		//обновление игровых объектов (функции update)
 		ballUpdate(ball);
 		batUpdate(bat);
+		textUpdate(scoreText, ball.score);
 		//отрисовка объектов и обновление окна
 		window.clear();
 		ballDraw(window, ball);
 		batDraw(window, bat);
+		textDraw(window, scoreText);
 		window.display();
 	}
 

@@ -23,5 +23,4 @@ const sf::Vector2f BALL_START_POS{ (WINDOW_WIDTH - 2 * BALL_RADIUS) / 2,
 		(WINDOW_HEIGHT - 2 * BALL_RADIUS) / 2 };
 
 const unsigned int FONT_SIZE = 64;
-const sf::Vector2f LEFT_TEXT_POS{ 200.f, 10.f };
-const sf::Vector2f RIGHT_TEXT_POS{ 550.f, 10.f };
+const sf::Vector2f TEXT_POS{ 10.f, -10.f };
