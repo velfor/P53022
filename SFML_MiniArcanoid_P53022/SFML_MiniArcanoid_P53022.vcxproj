@@ -129,7 +129,10 @@
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="bat.h" />
+    <ClInclude Include="brick.h" />
+    <ClInclude Include="bricksrow.h" />
     <ClInclude Include="settings.h" />
+    <ClInclude Include="textobj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

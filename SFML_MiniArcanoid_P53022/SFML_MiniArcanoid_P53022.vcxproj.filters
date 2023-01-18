@@ -29,5 +29,14 @@
     <ClInclude Include="bat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="textobj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="brick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bricksrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

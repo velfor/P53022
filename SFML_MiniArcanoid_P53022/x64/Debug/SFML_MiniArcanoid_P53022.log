@@ -1,4 +1,4 @@
 ﻿  main.cpp
-D:\forvel\SFML_MiniArcanoid_P53022\main.cpp(10,27): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
-D:\forvel\SFML_MiniArcanoid_P53022\main.cpp(10,13): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\forvel\SFML_MiniArcanoid_P53022\main.cpp(13,27): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\forvel\SFML_MiniArcanoid_P53022\main.cpp(13,13): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
   SFML_MiniArcanoid_P53022.vcxproj -> D:\forvel\SFML_MiniArcanoid_P53022\x64\Debug\SFML_MiniArcanoid_P53022.exe
