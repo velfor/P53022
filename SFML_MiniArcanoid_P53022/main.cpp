@@ -3,6 +3,7 @@
 #include "ball.h"
 #include "bat.h"
 #include "textobj.h"
+#include "brick.h"
 
 using namespace sf;
 int main()
@@ -20,6 +21,8 @@ int main()
 	batInit(bat);
 	TextObj scoreText;
 	textInit(scoreText, ball.score);
+	Brick brick;
+	brickInit(brick, Color::Yellow, Vector2f{50.f,50.f});
 	
 
 	while (window.isOpen())
@@ -35,11 +38,15 @@ int main()
 		ballUpdate(ball);
 		batUpdate(bat);
 		textUpdate(scoreText, ball.score);
+
+		brickUpdate(brick);
 		//отрисовка объектов и обновление окна
 		window.clear();
 		ballDraw(window, ball);
 		batDraw(window, bat);
 		textDraw(window, scoreText);
+
+		brickDraw(window, brick);
 		window.display();
 	}
 

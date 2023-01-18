@@ -24,3 +24,6 @@ const sf::Vector2f BALL_START_POS{ (WINDOW_WIDTH - 2 * BALL_RADIUS) / 2,
 
 const unsigned int FONT_SIZE = 64;
 const sf::Vector2f TEXT_POS{ 10.f, -10.f };
+
+const float BRICK_WIDTH = 80.f;
+const float BRICK_HEIGHT = 40.f;
