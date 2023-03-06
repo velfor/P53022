@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\forvel\SFML_OOP_VECTOR_SPRITE\SFML_OOP_VECTOR_SPRITE\main.cpp(8,46): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\forvel\SFML_OOP_VECTOR_SPRITE\SFML_OOP_VECTOR_SPRITE\main.cpp(8,32): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+  SFML_OOP_VECTOR_SPRITE.vcxproj -> D:\forvel\SFML_OOP_VECTOR_SPRITE\x64\Debug\SFML_OOP_VECTOR_SPRITE.exe
